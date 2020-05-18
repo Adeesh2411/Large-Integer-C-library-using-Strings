@@ -58,18 +58,39 @@ static char* powFunc(const char *arr, int n){
     return temp;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
+static char* powerFunc2(const char* intal1, int n){
+    int arr[n];
+    int i=0;
+    int k = n;
+    while(k!=0){
+        arr[i++] = k;
+        k/=2;
+    }
+    char* temp = NULL;
+    for(int k=i-1;k>=0;--k){
+        if(arr[k] == 1){
+            temp = (char*)malloc(sizeof(char)*strlen(intal1)+2);
+            strcpy(temp, intal1);
+        }
+        else if(arr[k]%2){
+            char *temp1=intal_multiply(temp, temp);
+            char *temp2 = intal_multiply(temp1, intal1);
+            free(temp);
+            temp = (char*)malloc(sizeof(char)*strlen(temp2)+2);
+            strcpy(temp, temp2);
+            free(temp1);
+            free(temp2);
+        }
+        else{
+            char *temp1=intal_multiply(temp, temp);
+            free(temp);
+            temp = (char*)malloc(sizeof(char)*strlen(temp1)+2);
+            strcpy(temp, temp1);
+            free(temp1);
+        }
+    }
+    return temp;
+}
 //main function
 
 
@@ -78,7 +99,7 @@ static char* powFunc(const char *arr, int n){
 char* intal_add(const char* intal1, const char* intal2){
     int len1 = strlen(intal1)-1;
     int len2 = strlen(intal2)-1;
-    char *result = (char*)malloc(sizeof(char)*(max(len1+1, len2+1)+1));
+    char *result = (char*)malloc(sizeof(char)*(max(len1+1, len2+1)+2));
     int indexResult=0;
     int carry = 0;
     int one, two, res;
@@ -141,17 +162,26 @@ int intal_compare(const char* intal1, const char* intal2){
 }
 
 char* intal_diff(const char* intal1, const char* intal2){
+    int len11 = strlen(intal1);
+    int len22 = strlen(intal2);
     char *first, *second;
-    first = (char*)malloc(sizeof(char)*max(strlen(intal1), strlen(intal2)));
-    second = (char*)malloc(sizeof(char)*min(strlen(intal1), strlen(intal2)));
     int val = intal_compare(intal1, intal2);
+
     if(val == -1){
+        first = (char*)malloc(sizeof(char)*(len22+2 ));
+        second = (char*)malloc(sizeof(char)*(len11+2 ));
         strcpy(first, intal2);
         strcpy(second, intal1);
+        first[len22] = '\0';
+        second[len11] = '\0';
     }
     else if(val == 1){
+        first = (char*)malloc(sizeof(char)*(len11+2 ));
+        second = (char*)malloc(sizeof(char)*(len22 +2));
         strcpy(first, intal1);
         strcpy(second, intal2);
+        first[len11] = '\0';
+        second[len22] = '\0';
     }
 
     else if(val == 0){
@@ -164,7 +194,7 @@ char* intal_diff(const char* intal1, const char* intal2){
     int len1 = strlen(first)-1;
     int len2 = strlen(second)-1;
     int res;
-    char *result = (char*)malloc(sizeof(char)*len1+1);
+    char *result = (char*)malloc(sizeof(char)*len1+2);
     int index = 0;
     while(len1>=0){
         res = 0;
@@ -185,12 +215,14 @@ char* intal_diff(const char* intal1, const char* intal2){
         res = val1- val2;
         result[index++] = res +'0';
     }
+    result[index] = '\0';
     while(index >=0 && result[index-1] == '0'){
         result[index-1] ='\0';
         index--;
     }
+    
     reverse(result);
-    result[strlen(result)] = '\0';
+    
     return result;
 }
 
@@ -201,7 +233,7 @@ char* intal_multiply(const char* intal1, const char* intal2){
     char *arr[len1+1];
     
     for(int i=len1-1;i>=0; --i){
-        arr[len1-1-i] = (char*)malloc(sizeof(char)*(len2+1+(len1-1-i)));
+        arr[len1-1-i] = (char*)malloc(sizeof(char)*(len2+1+(len1-1-i)+2));
         int curIndex=0;
         carry = 0;
         curNo = intal1[i] - '0';
@@ -236,8 +268,8 @@ char* intal_mod(const char* intal1, const char* intal2){
     int len1 = strlen(intal1);
     int len2 = strlen(intal2);
 
-    char* inside = (char*)malloc(sizeof(char)*len1);
-    char* rem = (char*)malloc(sizeof(char)*len2);
+    char* inside = (char*)malloc((sizeof(char)*len1)+2);
+    char* rem = (char*)malloc(sizeof(char)*len2 - 1);
     //below need to be optimized with space and time
     char* temp = subString(intal1, 0, len2-1);
     int index = len2-1;
@@ -262,7 +294,7 @@ char* intal_mod(const char* intal1, const char* intal2){
         }
         if(res == 0){
             free(inside);
-            inside = (char*)malloc(sizeof(char)*len2);
+            inside = (char*)malloc((sizeof(char)*len2)+2);
             if(index == len1-1){
                 char *a=(char*)malloc(sizeof(char)*2);
                 a[0] = '0';
@@ -343,8 +375,8 @@ char* intal_pow(const char* intal1, unsigned int n){
         temp[1]= '\0';
         return temp;
     }
-    char *temp = powFunc(intal1, n);
-    char *temp1 = (char*)malloc(sizeof(char)*strlen(temp));
+    char *temp = powerFunc2(intal1, n);
+    char *temp1 = (char*)malloc(sizeof(char)*strlen(temp)+2);
     strcpy(temp1, temp);
     free(temp);
     return temp1;
@@ -353,28 +385,73 @@ char* intal_pow(const char* intal1, unsigned int n){
 char* intal_gcd(const char* intal1, const char* intal2){
     int len1 = strlen(intal1);
     int len2 = strlen(intal2);
-    char* copy1 = (char*)malloc(sizeof(char)*len1);
-    char* copy2 = (char*)malloc(sizeof(char)*len2);
+    char* copy1 = (char*)malloc(sizeof(char)*len1+2);
+    char* copy2 = (char*)malloc(sizeof(char)*len2+2);
     strcpy(copy1, intal1);
     strcpy(copy2, intal2);
-    int res = intal_compare(copy1, copy2);
+    int res = strcmp(copy2, "0");
     while(res!=0){
-        if(res == 1){
-            char* temp = intal_diff(copy1, copy2);
-            free(copy1);
-            copy1 = (char*)malloc(sizeof(char)*strlen(temp));
-            strcpy(copy1, temp);
-            free(temp);
-        }
-        if(res == -1){
-            char* temp = intal_diff(copy2, copy1);
-            free(copy2);
-            copy2 = (char*)malloc(sizeof(char)*strlen(temp));
-            strcpy(copy2, temp);
-            free(temp);
-        }
-        res = intal_compare(copy1, copy2);
+        char *mod = intal_mod(copy1 , copy2);
+        free(copy1);
+        copy1 = (char*)malloc(sizeof(char)*strlen(copy2)+2);
+        strcpy(copy1, copy2);
+        free(copy2);
+        copy2 = (char*)malloc(sizeof(char)*strlen(mod)+2);
+        strcpy(copy2, mod);
+        free(mod);
+        res = strcmp(copy2, "0");
     }
-    free(copy1);
-    return copy2;
+    free(copy2);
+    return copy1;
+}
+
+char* intal_fibonacci(unsigned int n){
+    char* prev = (char*)malloc(sizeof(char)*2);
+    prev[0]='0';
+    prev[1]='\0';
+    char* cur = (char*)malloc(sizeof(char)*2);
+    cur[0]='1';
+    cur[1]='\0';
+    for(int i=2;i<=n;++i){
+        char* temp = intal_add(prev, cur);
+        free(prev);
+        prev = (char*)malloc(sizeof(char)*(strlen(cur)+2));
+        strcpy(prev, cur);
+        free(cur);
+        cur = (char*)malloc(sizeof(char)*(strlen(temp)+2));
+        strcpy(cur, temp);
+        free(temp);
+    }
+    return cur;
+}
+
+char* intal_factorial(unsigned int n){
+    char* cur = (char*)malloc(sizeof(char)*2);
+    cur[0] = '1';
+    cur[1] = '\0';
+    char *temp;
+    for(int i = 2;i<=n;++i){
+        int k = i;
+        int index = 0;
+        while(k){
+            index++;
+            k /= 10;
+        }
+        char* temp = (char*)malloc(sizeof(char)*index+2);
+        k=i;
+        temp[index] = '\0';
+        while(k){
+            temp[--index] =(k%10)+'0';
+            k/=10;
+        }
+
+        char *result = intal_multiply(cur, temp);
+        free(cur);
+        free(temp);
+        cur = (char*)malloc(sizeof(char)*strlen(result)+2);
+        strcpy(cur, result);
+        cur[strlen(cur)] = '\0';
+        free(result);
+    }
+    return cur;
 }

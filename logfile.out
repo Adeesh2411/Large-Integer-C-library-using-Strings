@@ -1,0 +1,333 @@
+==3831== Memcheck, a memory error detector
+==3831== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==3831== Using Valgrind-3.13.0 and LibVEX; rerun with -h for copyright info
+==3831== Command: ./a.out
+==3831== Parent PID: 1731
+==3831== 
+--3831-- 
+--3831-- Valgrind options:
+--3831--    --leak-check=full
+--3831--    --log-file=logfile.out
+--3831--    --track-origins=yes
+--3831--    -v
+--3831-- Contents of /proc/version:
+--3831--   Linux version 4.4.0-18362-Microsoft (Microsoft@Microsoft.com) (gcc version 5.4.0 (GCC) ) #476-Microsoft Fri Nov 01 16:53:00 PST 2019
+--3831-- 
+--3831-- Arch and hwcaps: AMD64, LittleEndian, amd64-cx16-lzcnt-rdtscp-sse3-avx-avx2-bmi
+--3831-- Page sizes: currently 4096, max supported 4096
+--3831-- Valgrind library directory: /usr/lib/valgrind
+--3831-- Reading syms from /mnt/c/Users/Adeessh Acharya/Documents/program_files/c/apss/new/Large-Integer-C-library-using-Strings/a.out
+--3831-- Reading syms from /lib/x86_64-linux-gnu/ld-2.27.so
+--3831--   Considering /lib/x86_64-linux-gnu/ld-2.27.so ..
+--3831--   .. CRC mismatch (computed 1b7c895e wanted 2943108a)
+--3831--   Considering /usr/lib/debug/lib/x86_64-linux-gnu/ld-2.27.so ..
+--3831--   .. CRC is valid
+--3831-- Reading syms from /usr/lib/valgrind/memcheck-amd64-linux
+--3831--   Considering /usr/lib/valgrind/memcheck-amd64-linux ..
+--3831--   .. CRC mismatch (computed 41ddb025 wanted 9972f546)
+--3831--    object doesn't have a symbol table
+--3831--    object doesn't have a dynamic symbol table
+--3831-- Scheduler: using generic scheduler lock implementation.
+--3831-- Reading suppressions file: /usr/lib/valgrind/default.supp
+==3831== embedded gdbserver: reading from /tmp/vgdb-pipe-from-vgdb-to-3831-by-roy-on-???
+==3831== embedded gdbserver: writing to   /tmp/vgdb-pipe-to-vgdb-from-3831-by-roy-on-???
+==3831== embedded gdbserver: shared mem   /tmp/vgdb-pipe-shared-mem-vgdb-3831-by-roy-on-???
+==3831== 
+==3831== TO CONTROL THIS PROCESS USING vgdb (which you probably
+==3831== don't want to do, unless you know exactly what you're doing,
+==3831== or are doing some strange experiment):
+==3831==   /usr/lib/valgrind/../../bin/vgdb --pid=3831 ...command...
+==3831== 
+==3831== TO DEBUG THIS PROCESS USING GDB: start GDB like this
+==3831==   /path/to/gdb ./a.out
+==3831== and then give GDB the following command
+==3831==   target remote | /usr/lib/valgrind/../../bin/vgdb --pid=3831
+==3831== --pid is optional if only one valgrind process is running
+==3831== 
+==3831== error calling PR_SET_PTRACER, vgdb might block
+--3831-- REDIR: 0x401f2f0 (ld-linux-x86-64.so.2:strlen) redirected to 0x580608c1 (???)
+--3831-- REDIR: 0x401f0d0 (ld-linux-x86-64.so.2:index) redirected to 0x580608db (???)
+--3831-- Reading syms from /usr/lib/valgrind/vgpreload_core-amd64-linux.so
+--3831--   Considering /usr/lib/valgrind/vgpreload_core-amd64-linux.so ..
+--3831--   .. CRC mismatch (computed 50df1b30 wanted 4800a4cf)
+--3831--    object doesn't have a symbol table
+--3831-- Reading syms from /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so
+--3831--   Considering /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so ..
+--3831--   .. CRC mismatch (computed f893b962 wanted 95ee359e)
+--3831--    object doesn't have a symbol table
+==3831== WARNING: new redirection conflicts with existing -- ignoring it
+--3831--     old: 0x0401f2f0 (strlen              ) R-> (0000.0) 0x580608c1 ???
+--3831--     new: 0x0401f2f0 (strlen              ) R-> (2007.0) 0x04c32db0 strlen
+--3831-- REDIR: 0x401d360 (ld-linux-x86-64.so.2:strcmp) redirected to 0x4c33ee0 (strcmp)
+--3831-- REDIR: 0x401f830 (ld-linux-x86-64.so.2:mempcpy) redirected to 0x4c374f0 (mempcpy)
+--3831-- Reading syms from /lib/x86_64-linux-gnu/libc-2.27.so
+--3831--   Considering /lib/x86_64-linux-gnu/libc-2.27.so ..
+--3831--   .. CRC mismatch (computed b1c74187 wanted 042cc048)
+--3831--   Considering /usr/lib/debug/lib/x86_64-linux-gnu/libc-2.27.so ..
+--3831--   .. CRC is valid
+--3831-- REDIR: 0x4edac70 (libc.so.6:memmove) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--3831-- REDIR: 0x4ed9d40 (libc.so.6:strncpy) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--3831-- REDIR: 0x4edaf50 (libc.so.6:strcasecmp) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--3831-- REDIR: 0x4ed9790 (libc.so.6:strcat) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--3831-- REDIR: 0x4ed9d70 (libc.so.6:rindex) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--3831-- REDIR: 0x4edc7c0 (libc.so.6:rawmemchr) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--3831-- REDIR: 0x4edade0 (libc.so.6:mempcpy) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--3831-- REDIR: 0x4edac10 (libc.so.6:bcmp) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--3831-- REDIR: 0x4ed9d00 (libc.so.6:strncmp) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--3831-- REDIR: 0x4ed9800 (libc.so.6:strcmp) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--3831-- REDIR: 0x4edad40 (libc.so.6:memset) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--3831-- REDIR: 0x4ef80f0 (libc.so.6:wcschr) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--3831-- REDIR: 0x4ed9ca0 (libc.so.6:strnlen) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--3831-- REDIR: 0x4ed9870 (libc.so.6:strcspn) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--3831-- REDIR: 0x4edafa0 (libc.so.6:strncasecmp) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--3831-- REDIR: 0x4ed9840 (libc.so.6:strcpy) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--3831-- REDIR: 0x4edb0e0 (libc.so.6:memcpy@@GLIBC_2.14) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--3831-- REDIR: 0x4ed9da0 (libc.so.6:strpbrk) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--3831-- REDIR: 0x4ed97c0 (libc.so.6:index) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--3831-- REDIR: 0x4ed9c70 (libc.so.6:strlen) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--3831-- REDIR: 0x4ee46c0 (libc.so.6:memrchr) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--3831-- REDIR: 0x4edaff0 (libc.so.6:strcasecmp_l) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--3831-- REDIR: 0x4edabe0 (libc.so.6:memchr) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--3831-- REDIR: 0x4ef8eb0 (libc.so.6:wcslen) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--3831-- REDIR: 0x4eda050 (libc.so.6:strspn) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--3831-- REDIR: 0x4edaf20 (libc.so.6:stpncpy) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--3831-- REDIR: 0x4edaef0 (libc.so.6:stpcpy) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--3831-- REDIR: 0x4edc7f0 (libc.so.6:strchrnul) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--3831-- REDIR: 0x4edb040 (libc.so.6:strncasecmp_l) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--3831-- REDIR: 0x4fca3c0 (libc.so.6:__strrchr_avx2) redirected to 0x4c32730 (rindex)
+--3831-- REDIR: 0x4ed3070 (libc.so.6:malloc) redirected to 0x4c2faa0 (malloc)
+--3831-- REDIR: 0x4fca590 (libc.so.6:__strlen_avx2) redirected to 0x4c32cf0 (strlen)
+--3831-- REDIR: 0x4fa5d60 (libc.so.6:__strcmp_ssse3) redirected to 0x4c33da0 (strcmp)
+--3831-- REDIR: 0x4ed3950 (libc.so.6:free) redirected to 0x4c30cd0 (free)
+--3831-- REDIR: 0x4fcaab0 (libc.so.6:__mempcpy_avx_unaligned_erms) redirected to 0x4c37130 (mempcpy)
+--3831-- REDIR: 0x4fb7950 (libc.so.6:__strcpy_ssse3) redirected to 0x4c32dd0 (strcpy)
+--3831-- REDIR: 0x4eed9e0 (libc.so.6:__strcat_ssse3) redirected to 0x4c32990 (strcat)
+==3831== 
+==3831== HEAP SUMMARY:
+==3831==     in use at exit: 1,983,754 bytes in 11,857 blocks
+==3831==   total heap usage: 27,961 allocs, 16,104 frees, 4,289,606 bytes allocated
+==3831== 
+==3831== Searching for pointers to 11,857 not-freed blocks
+==3831== Checked 70,056 bytes
+==3831== 
+==3831== 0 bytes in 1 blocks are definitely lost in loss record 1 of 36
+==3831==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==3831==    by 0x10A0A4: intal_mod (PES1201700959.c:272)
+==3831==    by 0x108DB3: main (intal_sampletest.c:83)
+==3831== 
+==3831== 1 bytes in 1 blocks are definitely lost in loss record 2 of 36
+==3831==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==3831==    by 0x10A0A4: intal_mod (PES1201700959.c:272)
+==3831==    by 0x108E39: main (intal_sampletest.c:95)
+==3831== 
+==3831== 1 bytes in 3 blocks are definitely lost in loss record 3 of 36
+==3831==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==3831==    by 0x10A0A4: intal_mod (PES1201700959.c:272)
+==3831==    by 0x10A753: intal_gcd (PES1201700959.c:394)
+==3831==    by 0x109056: main (intal_sampletest.c:143)
+==3831== 
+==3831== 3 bytes in 1 blocks are definitely lost in loss record 4 of 36
+==3831==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==3831==    by 0x10A211: intal_mod (PES1201700959.c:297)
+==3831==    by 0x10A753: intal_gcd (PES1201700959.c:394)
+==3831==    by 0x109056: main (intal_sampletest.c:143)
+==3831== 
+==3831== 3 bytes in 1 blocks are definitely lost in loss record 5 of 36
+==3831==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==3831==    by 0x10A89D: intal_fibonacci (PES1201700959.c:418)
+==3831==    by 0x1090C9: main (intal_sampletest.c:155)
+==3831== 
+==3831== 6 bytes in 1 blocks are definitely lost in loss record 6 of 36
+==3831==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==3831==    by 0x109E03: intal_multiply (PES1201700959.c:236)
+==3831==    by 0x109619: powerFunc2 (PES1201700959.c:76)
+==3831==    by 0x10A662: intal_pow (PES1201700959.c:378)
+==3831==    by 0x108EBA: main (intal_sampletest.c:107)
+==3831== 
+==3831== 11 bytes in 3 blocks are definitely lost in loss record 7 of 36
+==3831==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==3831==    by 0x109AEC: intal_diff (PES1201700959.c:179)
+==3831==    by 0x10A387: intal_mod (PES1201700959.c:320)
+==3831==    by 0x108DB3: main (intal_sampletest.c:83)
+==3831== 
+==3831== 11 bytes in 3 blocks are definitely lost in loss record 8 of 36
+==3831==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==3831==    by 0x109B00: intal_diff (PES1201700959.c:180)
+==3831==    by 0x10A387: intal_mod (PES1201700959.c:320)
+==3831==    by 0x108DB3: main (intal_sampletest.c:83)
+==3831== 
+==3831== 13 bytes in 2 blocks are definitely lost in loss record 9 of 36
+==3831==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==3831==    by 0x109E03: intal_multiply (PES1201700959.c:236)
+==3831==    by 0x109630: powerFunc2 (PES1201700959.c:77)
+==3831==    by 0x10A662: intal_pow (PES1201700959.c:378)
+==3831==    by 0x108EBA: main (intal_sampletest.c:107)
+==3831== 
+==3831== 24 bytes in 1 blocks are definitely lost in loss record 10 of 36
+==3831==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==3831==    by 0x10A0A4: intal_mod (PES1201700959.c:272)
+==3831==    by 0x108D37: main (intal_sampletest.c:71)
+==3831== 
+==3831== 27 bytes in 1 blocks are definitely lost in loss record 11 of 36
+==3831==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==3831==    by 0x109A87: intal_diff (PES1201700959.c:172)
+==3831==    by 0x108C23: main (intal_sampletest.c:47)
+==3831== 
+==3831== 27 bytes in 1 blocks are definitely lost in loss record 12 of 36
+==3831==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==3831==    by 0x109AEC: intal_diff (PES1201700959.c:179)
+==3831==    by 0x10A387: intal_mod (PES1201700959.c:320)
+==3831==    by 0x108D37: main (intal_sampletest.c:71)
+==3831== 
+==3831== 27 bytes in 1 blocks are definitely lost in loss record 13 of 36
+==3831==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==3831==    by 0x109B00: intal_diff (PES1201700959.c:180)
+==3831==    by 0x10A387: intal_mod (PES1201700959.c:320)
+==3831==    by 0x108D37: main (intal_sampletest.c:71)
+==3831== 
+==3831== 32 bytes in 1 blocks are definitely lost in loss record 14 of 36
+==3831==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==3831==    by 0x109A73: intal_diff (PES1201700959.c:171)
+==3831==    by 0x108C23: main (intal_sampletest.c:47)
+==3831== 
+==3831== 40 bytes in 10 blocks are definitely lost in loss record 15 of 36
+==3831==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==3831==    by 0x109B00: intal_diff (PES1201700959.c:180)
+==3831==    by 0x10A387: intal_mod (PES1201700959.c:320)
+==3831==    by 0x108E39: main (intal_sampletest.c:95)
+==3831== 
+==3831== 43 bytes in 11 blocks are definitely lost in loss record 16 of 36
+==3831==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==3831==    by 0x109B00: intal_diff (PES1201700959.c:180)
+==3831==    by 0x10A387: intal_mod (PES1201700959.c:320)
+==3831==    by 0x10A753: intal_gcd (PES1201700959.c:394)
+==3831==    by 0x109056: main (intal_sampletest.c:143)
+==3831== 
+==3831== 45 bytes in 10 blocks are definitely lost in loss record 17 of 36
+==3831==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==3831==    by 0x109AEC: intal_diff (PES1201700959.c:179)
+==3831==    by 0x10A387: intal_mod (PES1201700959.c:320)
+==3831==    by 0x108E39: main (intal_sampletest.c:95)
+==3831== 
+==3831== 49 bytes in 11 blocks are definitely lost in loss record 18 of 36
+==3831==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==3831==    by 0x109AEC: intal_diff (PES1201700959.c:179)
+==3831==    by 0x10A387: intal_mod (PES1201700959.c:320)
+==3831==    by 0x10A753: intal_gcd (PES1201700959.c:394)
+==3831==    by 0x109056: main (intal_sampletest.c:143)
+==3831== 
+==3831== 50 bytes in 10 blocks are definitely lost in loss record 19 of 36
+==3831==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==3831==    by 0x109E03: intal_multiply (PES1201700959.c:236)
+==3831==    by 0x10A370: intal_mod (PES1201700959.c:319)
+==3831==    by 0x108E39: main (intal_sampletest.c:95)
+==3831== 
+==3831== 50 bytes in 10 blocks are definitely lost in loss record 20 of 36
+==3831==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==3831==    by 0x109E03: intal_multiply (PES1201700959.c:236)
+==3831==    by 0x10A370: intal_mod (PES1201700959.c:319)
+==3831==    by 0x10A753: intal_gcd (PES1201700959.c:394)
+==3831==    by 0x109056: main (intal_sampletest.c:143)
+==3831== 
+==3831== 211 bytes in 1 blocks are definitely lost in loss record 21 of 36
+==3831==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==3831==    by 0x10A89D: intal_fibonacci (PES1201700959.c:418)
+==3831==    by 0x10913C: main (intal_sampletest.c:167)
+==3831== 
+==3831== 396 bytes in 24 blocks are definitely lost in loss record 22 of 36
+==3831==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==3831==    by 0x109E03: intal_multiply (PES1201700959.c:236)
+==3831==    by 0x10A1B2: intal_mod (PES1201700959.c:291)
+==3831==    by 0x108D37: main (intal_sampletest.c:71)
+==3831== 
+==3831== 396 bytes in 24 blocks are definitely lost in loss record 23 of 36
+==3831==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==3831==    by 0x109E03: intal_multiply (PES1201700959.c:236)
+==3831==    by 0x10A370: intal_mod (PES1201700959.c:319)
+==3831==    by 0x108D37: main (intal_sampletest.c:71)
+==3831== 
+==3831== 420 bytes in 24 blocks are definitely lost in loss record 24 of 36
+==3831==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==3831==    by 0x109E03: intal_multiply (PES1201700959.c:236)
+==3831==    by 0x108CAD: main (intal_sampletest.c:59)
+==3831== 
+==3831== 1,750 bytes in 350 blocks are definitely lost in loss record 25 of 36
+==3831==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==3831==    by 0x109E03: intal_multiply (PES1201700959.c:236)
+==3831==    by 0x10A1B2: intal_mod (PES1201700959.c:291)
+==3831==    by 0x108E39: main (intal_sampletest.c:95)
+==3831== 
+==3831== 1,750 bytes in 350 blocks are definitely lost in loss record 26 of 36
+==3831==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==3831==    by 0x109E03: intal_multiply (PES1201700959.c:236)
+==3831==    by 0x10A1B2: intal_mod (PES1201700959.c:291)
+==3831==    by 0x10A753: intal_gcd (PES1201700959.c:394)
+==3831==    by 0x109056: main (intal_sampletest.c:143)
+==3831== 
+==3831== 5,706 bytes in 369 blocks are definitely lost in loss record 27 of 36
+==3831==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==3831==    by 0x109E03: intal_multiply (PES1201700959.c:236)
+==3831==    by 0x10AA1A: intal_factorial (PES1201700959.c:448)
+==3831==    by 0x1091AF: main (intal_sampletest.c:179)
+==3831== 
+==3831== 6,516 bytes in 100 blocks are definitely lost in loss record 28 of 36
+==3831==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==3831==    by 0x109E03: intal_multiply (PES1201700959.c:236)
+==3831==    by 0x109619: powerFunc2 (PES1201700959.c:76)
+==3831==    by 0x10A662: intal_pow (PES1201700959.c:378)
+==3831==    by 0x108FB9: main (intal_sampletest.c:131)
+==3831== 
+==3831== 7,626 bytes in 93 blocks are definitely lost in loss record 29 of 36
+==3831==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==3831==    by 0x109E03: intal_multiply (PES1201700959.c:236)
+==3831==    by 0x10969C: powerFunc2 (PES1201700959.c:85)
+==3831==    by 0x10A662: intal_pow (PES1201700959.c:378)
+==3831==    by 0x108F34: main (intal_sampletest.c:119)
+==3831== 
+==3831== 9,090 bytes in 204 blocks are definitely lost in loss record 30 of 36
+==3831==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==3831==    by 0x109E03: intal_multiply (PES1201700959.c:236)
+==3831==    by 0x109630: powerFunc2 (PES1201700959.c:77)
+==3831==    by 0x10A662: intal_pow (PES1201700959.c:378)
+==3831==    by 0x108FB9: main (intal_sampletest.c:131)
+==3831== 
+==3831== 12,108 (96 direct, 12,012 indirect) bytes in 1 blocks are definitely lost in loss record 32 of 36
+==3831==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==3831==    by 0x1088D1: main (intal_sampletest.c:8)
+==3831== 
+==3831== 376,604 bytes in 6,734 blocks are definitely lost in loss record 33 of 36
+==3831==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==3831==    by 0x109E03: intal_multiply (PES1201700959.c:236)
+==3831==    by 0x10AA1A: intal_factorial (PES1201700959.c:448)
+==3831==    by 0x10922D: main (intal_sampletest.c:191)
+==3831== 
+==3831== 403,482 bytes in 794 blocks are definitely lost in loss record 34 of 36
+==3831==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==3831==    by 0x109E03: intal_multiply (PES1201700959.c:236)
+==3831==    by 0x10969C: powerFunc2 (PES1201700959.c:85)
+==3831==    by 0x10A662: intal_pow (PES1201700959.c:378)
+==3831==    by 0x108FB9: main (intal_sampletest.c:131)
+==3831== 
+==3831== 494,034 bytes in 898 blocks are definitely lost in loss record 35 of 36
+==3831==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==3831==    by 0x109E03: intal_multiply (PES1201700959.c:236)
+==3831==    by 0x109619: powerFunc2 (PES1201700959.c:76)
+==3831==    by 0x10A662: intal_pow (PES1201700959.c:378)
+==3831==    by 0x108F34: main (intal_sampletest.c:119)
+==3831== 
+==3831== 663,202 bytes in 1,796 blocks are definitely lost in loss record 36 of 36
+==3831==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==3831==    by 0x109E03: intal_multiply (PES1201700959.c:236)
+==3831==    by 0x109630: powerFunc2 (PES1201700959.c:77)
+==3831==    by 0x10A662: intal_pow (PES1201700959.c:378)
+==3831==    by 0x108F34: main (intal_sampletest.c:119)
+==3831== 
+==3831== LEAK SUMMARY:
+==3831==    definitely lost: 1,971,742 bytes in 11,845 blocks
+==3831==    indirectly lost: 12,012 bytes in 12 blocks
+==3831==      possibly lost: 0 bytes in 0 blocks
+==3831==    still reachable: 0 bytes in 0 blocks
+==3831==         suppressed: 0 bytes in 0 blocks
+==3831== 
+==3831== ERROR SUMMARY: 35 errors from 35 contexts (suppressed: 0 from 0)
+==3831== ERROR SUMMARY: 35 errors from 35 contexts (suppressed: 0 from 0)
