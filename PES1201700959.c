@@ -91,6 +91,73 @@ static char* powerFunc2(const char* intal1, int n){
     }
     return temp;
 }
+
+
+static int binSearch(char** arr, int start, int end, const char* key){
+    if(start <= end){
+        int mid = (start+end)/2;
+        int res = intal_compare(arr[mid], key);
+        if(res == -1){
+            return binSearch(arr, mid+1, end, key);
+        }   
+        else if(res == 1){
+            return binSearch(arr,start, mid-1, key);
+        } 
+        else{
+            return mid;
+        }
+    }
+    return -1;
+}
+
+static int partition(char **arr, int start, int end){
+    int p = start;
+    int i = start+1;
+    int j = start+1;
+    
+    while(i<=end && j<=end){
+        int res = intal_compare(arr[p], arr[j]);
+        if(res == -1){ //arr[j] > pivot
+            ++j;
+        }
+        else{
+            //swap
+            if(i!=j){
+                char* temp = (char*)malloc(sizeof(char)*strlen(arr[i])+2);
+                strcpy(temp, arr[i]);
+                free(arr[i]);
+                arr[i] = (char*)malloc(sizeof(char)*strlen(arr[j])+2);
+                strcpy(arr[i], arr[j]);
+                free(arr[j]);
+                arr[j] = (char*)malloc(sizeof(char)*strlen(temp)+2);
+                strcpy(arr[j], temp);
+                free(temp);
+            }
+            ++i;
+            ++j;
+        }
+    }
+    if(p!=i-1){
+        char* temp = (char*)malloc(sizeof(char)*strlen(arr[p])+2);
+        strcpy(temp, arr[p]);
+        free(arr[p]);
+        arr[p] = (char*)malloc(sizeof(char)*strlen(arr[i-1])+2);
+        strcpy(arr[p], arr[i-1]);
+        free(arr[i-1]);
+        arr[i-1] = (char*)malloc(sizeof(char)*strlen(temp)+2);
+        strcpy(arr[i-1], temp);
+        free(temp);
+    }
+    return i-1;
+}
+
+static void quickSort(char** arr, int start, int end){
+    if(start<end){
+        int p = partition(arr, start, end);
+        quickSort(arr,start,p-1);
+        quickSort(arr, p+1, end);
+    }
+}
 //main function
 
 
@@ -469,5 +536,145 @@ char* intal_factorial(unsigned int n){
         cur[strlen(cur)] = '\0';
         free(result);
     }
+    return cur;
+}
+
+char* intal_bincoeff(unsigned int n, unsigned int k){
+    char **dp = (char**)malloc(sizeof(char*)*(k+2));
+    for(int i=0;i<=k;++i){
+        dp[i] = (char*)malloc(sizeof(char)*2);
+        if(i==0)
+            dp[i][0] = '1';
+        else
+            dp[i][0]='0';
+        dp[i][1]= '\0';
+    }
+    char* cur;
+    char* prev;
+    
+    for(int i=1;i<=n;++i){
+        
+        cur = (char*)malloc(sizeof(char)*strlen(dp[0])+2);
+        strcpy(cur, dp[0]);
+
+        for(int j=1;j<=i && j<=k;++j){
+        
+            prev = (char*)malloc(sizeof(char)*strlen(cur)+2);
+            strcpy(prev, cur);
+            free(cur);
+            cur = (char*)malloc(sizeof(char)*strlen(dp[j])+2);
+            strcpy(cur, dp[j]);
+
+            char* temp = intal_add(prev, cur);
+            
+            free(dp[j]);
+            
+            dp[j] = (char*)malloc(sizeof(char)*(strlen(temp)+ 2));
+            strcpy(dp[j], temp);
+            free(temp);
+            free(prev);
+            if(i%2==0 && j+1 == (i/2)){
+                char* addMiddle = intal_add(cur, cur);
+                free(dp[j+1]);
+                dp[j+1] = (char*)malloc(sizeof(char)*strlen(addMiddle)+2); 
+                strcpy(dp[j+1], addMiddle);
+                free(addMiddle);
+                break;
+            }
+            if(i%2==1 && j+1 == (i+1)/2 )
+                break;            
+             
+        }
+        free(cur);
+    }
+    int mid = k+1;
+    if(n%2 == 0 && k>(n/2)+1){
+        mid = (n/2)+1;
+        int t = k - ((n/2)+1);
+        mid-=t+1;
+    }   
+    else if(n%2==1 && k > (n+1)/2){
+        mid = (n+1)/2;
+        int t= k-(n+1)/2 ;
+        mid-=t+1;
+    }
+    char *result = (char*)malloc(sizeof(char)*strlen(dp[mid-1])+2);
+    
+    strcpy(result, dp[mid-1]);
+    for(int i=0;i<=k;++i){
+        free(dp[i]);
+    }
+
+    free(dp);
+    return result;
+}
+
+int intal_max(char **arr, int n){
+    int index = 0;
+    for(int i=1;i<n;++i){
+        int res = intal_compare(arr[index], arr[i]);
+        if(res ==-1){
+            index = i;
+        }
+    }
+    return index;
+}
+
+int intal_min(char **arr, int n){
+    int index = 0;
+    for(int i=1;i<n;++i){
+        int res = intal_compare(arr[index], arr[i]);
+        if(res ==1){
+            index = i;
+        }
+    }
+    return index;  
+}
+
+int intal_search(char **arr, int n, const char* key){
+    for(int i=0;i<n;++i){
+        if(!strcmp(arr[i], key))
+            return i;
+    }
+    return -1;
+}
+
+int intal_binsearch(char **arr, int n, const char* key){
+    return binSearch(arr, 0, n-1,key);
+}
+
+void intal_sort(char **arr, int n){
+    quickSort(arr,0,n-1);
+}
+
+char* coin_row_problem(char **arr, int n){
+    char *prev = (char*)malloc(sizeof(char)*4);
+    prev[0]='0';
+    prev[1]='\0';
+
+    char *cur = (char*)malloc(sizeof(strlen(arr[0]))+2);
+    strcpy(cur, arr[0]);
+
+    for(int i = 1; i<n; ++i){
+        char *temp1 = intal_add(prev, arr[i]);
+        int res = intal_compare(temp1, cur);
+        if(res == 1){
+            //temp = prev; prev = cur; cur = prev
+            free(prev);
+            prev = (char*)malloc(sizeof(char)*strlen(cur)+2);
+            strcpy(prev, cur);
+
+            free(cur);
+            cur = (char*)malloc(sizeof(char)*strlen(temp1)+2);
+            strcpy(cur, temp1);
+        }
+        else{
+            free(prev);
+            prev = (char*)malloc(sizeof(char)*strlen(cur)+2);
+            strcpy(prev, cur);
+        }
+        free(temp1);
+    }
+    free(prev);
     return cur;
 }
