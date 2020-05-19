@@ -3,20 +3,24 @@
 #include<stdlib.h>
 #include<string.h>
 
+//to get max of two numbers
 static int max(int one, int two){
     return one>two?one:two;
 }
 
+//to get min of two numbers
 static int min(int one, int two){
     return one>two?two:one;
 }
 
+//swaps the two char
 static void swap(char *a, char *b){
     char temp = *a;
     *a = *b;
     *b=temp;
 }
 
+//reverses the given string
 static void reverse(char *result){
     int indexResult = strlen(result);
     int k = 0;
@@ -26,6 +30,7 @@ static void reverse(char *result){
     }
 }
 
+//to get the substring from thw given string in the given range
 static char* subString(const char *str, int first, int last){
     char* temp = (char*)malloc(sizeof(char)*(last-first+2));
     int k=0;
@@ -36,6 +41,8 @@ static char* subString(const char *str, int first, int last){
     return temp; 
 }
 
+//recursive function to calculate the arr ^ n in O(log(n)) time , provided all the other addition and multiplication
+//runs in constant time
 static char* powFunc(const char *arr, int n){
     if(n == 1){
         char *temp = (char*)malloc(sizeof(char)*strlen(arr)+2);
@@ -58,41 +65,7 @@ static char* powFunc(const char *arr, int n){
     return temp;
 }
 
-static char* powerFunc2(const char* intal1, int n){
-    int arr[n];
-    int i=0;
-    int k = n;
-    while(k!=0){
-        arr[i++] = k;
-        k/=2;
-    }
-    char* temp = NULL;
-    for(int k=i-1;k>=0;--k){
-        if(arr[k] == 1){
-            temp = (char*)malloc(sizeof(char)*strlen(intal1)+2);
-            strcpy(temp, intal1);
-        }
-        else if(arr[k]%2){
-            char *temp1=intal_multiply(temp, temp);
-            char *temp2 = intal_multiply(temp1, intal1);
-            free(temp);
-            temp = (char*)malloc(sizeof(char)*strlen(temp2)+2);
-            strcpy(temp, temp2);
-            free(temp1);
-            free(temp2);
-        }
-        else{
-            char *temp1=intal_multiply(temp, temp);
-            free(temp);
-            temp = (char*)malloc(sizeof(char)*strlen(temp1)+2);
-            strcpy(temp, temp1);
-            free(temp1);
-        }
-    }
-    return temp;
-}
-
-
+//binary Search function
 static int binSearch(char** arr, int start, int end, const char* key){
     if(start <= end){
         int mid = (start+end)/2;
@@ -110,6 +83,7 @@ static int binSearch(char** arr, int start, int end, const char* key){
     return -1;
 }
 
+//partition function for quick sort
 static int partition(char **arr, int start, int end){
     int p = start;
     int i = start+1;
@@ -150,7 +124,7 @@ static int partition(char **arr, int start, int end){
     }
     return i-1;
 }
-
+//performs the quick sort
 static void quickSort(char** arr, int start, int end){
     if(start<end){
         int p = partition(arr, start, end);
@@ -158,10 +132,9 @@ static void quickSort(char** arr, int start, int end){
         quickSort(arr, p+1, end);
     }
 }
-//main function
-
-
-
+/****************************************************************
+main function
+****************************************************************/
 
 char* intal_add(const char* intal1, const char* intal2){
     int len1 = strlen(intal1)-1;
@@ -347,10 +320,10 @@ char* intal_mod(const char* intal1, const char* intal2){
     int len2 = strlen(intal2);
 
     char* rem = (char*)malloc(sizeof(char)*len2 - 1);
-    //below need to be optimized with space and time
     char* temp = subString(intal1, 0, len2-1);
     char* inside = (char*)malloc((sizeof(char)*strlen(temp))+2);
     int index = len2-1;
+    
     while(intal_compare(intal2, temp) == 1){
         free(temp);
         temp = subString(intal1, 0, ++index);
@@ -391,7 +364,6 @@ char* intal_mod(const char* intal1, const char* intal2){
                 char *A = subString(intal1, index+1, index+1);
                 strcat(inside, A);
                 ++index;
-                // inside[k++] = intal1[++index];
             }
         }
         else if(res == -1){
@@ -399,12 +371,12 @@ char* intal_mod(const char* intal1, const char* intal2){
             char a[3]={valInString,'\0'};
             char *temp1 = intal_multiply(intal2, a);
             char *diff = intal_diff(inside, temp1);
-            //printf("diff = %s\n",diff);
+
             free(temp1);
             free(inside);
             inside = (char*)malloc(sizeof(char)*len1);
             strcpy(inside, diff);
-            //printf("befor e = %s\n", inside);
+
             int n = strlen(inside);
             if(index+1 <len1){
                 char *A = subString(intal1, index+1,index+1);
@@ -412,9 +384,6 @@ char* intal_mod(const char* intal1, const char* intal2){
                 free(A);
                 index++;
             }
-                
-            
-
             if(index != len1-1 && strlen(diff)< len2){
                 char* temp = subString(intal1, index+1, index+len2-strlen(diff));
                 index+=len2-strlen(diff);
@@ -425,7 +394,6 @@ char* intal_mod(const char* intal1, const char* intal2){
             free(diff);
             int temp = strlen(inside);
             while(index <= len1-1 && intal_compare(inside, intal2) == -1){
-                //printf("%s %d\n", inside, index);
                 inside[temp] = intal1[index+1];
                 index++;
                 ++temp;
@@ -441,7 +409,6 @@ char* intal_mod(const char* intal1, const char* intal2){
     }
     free(rem);
     return inside;
-
 }
 
 char* intal_pow(const char* intal1, unsigned int n){
@@ -457,7 +424,7 @@ char* intal_pow(const char* intal1, unsigned int n){
         temp[1]= '\0';
         return temp;
     }
-    char *temp = powerFunc2(intal1, n);
+    char *temp = powFunc(intal1, n);
     char *temp1 = (char*)malloc(sizeof(char)*strlen(temp)+2);
     strcpy(temp1, temp);
     free(temp);
@@ -472,6 +439,7 @@ char* intal_gcd(const char* intal1, const char* intal2){
     strcpy(copy1, intal1);
     strcpy(copy2, intal2);
     int res = strcmp(copy2, "0");
+
     while(res!=0){
         char *mod = intal_mod(copy1 , copy2);
         free(copy1);
@@ -483,6 +451,7 @@ char* intal_gcd(const char* intal1, const char* intal2){
         free(mod);
         res = strcmp(copy2, "0");
     }
+
     free(copy2);
     return copy1;
 }
@@ -668,7 +637,7 @@ char* coin_row_problem(char **arr, int n){
             cur = (char*)malloc(sizeof(char)*strlen(temp1)+2);
             strcpy(cur, temp1);
         }
-        else{
+        else{//prev = cur
             free(prev);
             prev = (char*)malloc(sizeof(char)*strlen(cur)+2);
             strcpy(prev, cur);
