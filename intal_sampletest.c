@@ -260,5 +260,12 @@ int main(int argc, char const *argv[]) {
 		printf("Test coin_row_problem FAILED.\nYour answer: %s\nExpected answer: %s\n", result1, "12");
 	}
 */
+	
+
+
+	for(int i = 0; i < n; i++) {
+		free(a[i]);
+	}
+	free(a);
 	return 0;
 }

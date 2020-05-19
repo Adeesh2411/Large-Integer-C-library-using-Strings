@@ -1,12 +1,15 @@
 #include<stdio.h>
-#include"intal.h"
 #include<string.h>
 #include<stdlib.h>
+#include "intal.h"
+
 int main(){
     int s=1;
     char s1[]={"746652693111340684748335773649535049167194337981352622778676938155919246571364727245988040158371251268989778458820332952459919116189260837160728912885240767937886910354919807319512954034599354364394517052489945756793025561702170624"};
-    //char *test = intal_multiply(s1,s1);
 
-    //printf("mod = %s\n", test);
-    //free(test);
+    char *test = intal_fibonacci(13);
+
+    printf("mod = %s\n", test);
+    free(test);
 }
+

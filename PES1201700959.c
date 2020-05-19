@@ -38,7 +38,7 @@ static char* subString(const char *str, int first, int last){
 
 static char* powFunc(const char *arr, int n){
     if(n == 1){
-        char *temp = (char*)malloc(sizeof(char)*strlen(arr));
+        char *temp = (char*)malloc(sizeof(char)*strlen(arr)+2);
         strcpy(temp, arr);
         return temp;
     }
@@ -222,7 +222,8 @@ char* intal_diff(const char* intal1, const char* intal2){
     }
     
     reverse(result);
-    
+    free(first);
+    free(second);
     return result;
 }
 
@@ -253,25 +254,35 @@ char* intal_multiply(const char* intal1, const char* intal2){
         arr[len1-i-1][curIndex] = '\0';
     }
     reverse(arr[0]);
-    char *temp = arr[0];
-    char *freeIt;
+    char *prev = (char*)malloc(sizeof(char)*strlen(arr[0])+2);
+    strcpy(prev, arr[0]);
+    free(arr[0]);
+    
     for(int i=1;i<len1; ++i){
         reverse(arr[i]);
-        freeIt = temp;
-        temp = intal_add(freeIt, arr[i]);
-        free(freeIt);
+        char *cur = (char*)malloc(sizeof(char)*strlen(arr[i])+2);
+        strcpy(cur, arr[i]);
+        free(arr[i]);
+
+        char *temp1 = intal_add(prev, cur);
+        free(prev);
+        prev = (char*)malloc(sizeof(char)*strlen(temp1)+2);
+        strcpy(prev, temp1);
+
+        free(cur);
+        free(temp1);
     }
-    return temp;
+    return prev;
 }
 
 char* intal_mod(const char* intal1, const char* intal2){
     int len1 = strlen(intal1);
     int len2 = strlen(intal2);
 
-    char* inside = (char*)malloc((sizeof(char)*len1)+2);
     char* rem = (char*)malloc(sizeof(char)*len2 - 1);
     //below need to be optimized with space and time
     char* temp = subString(intal1, 0, len2-1);
+    char* inside = (char*)malloc((sizeof(char)*strlen(temp))+2);
     int index = len2-1;
     while(intal_compare(intal2, temp) == 1){
         free(temp);
@@ -299,11 +310,14 @@ char* intal_mod(const char* intal1, const char* intal2){
                 char *a=(char*)malloc(sizeof(char)*2);
                 a[0] = '0';
                 a[1] = '\0';
+                free(rem);
+                free(inside);
                 return a;
             }
             char* temp = subString(intal1, index+1, index+len2);
             index+=len2;
             strcpy(inside, temp);
+
             free(temp);
             int k = strlen(inside);
             while(index < len1 && intal_compare(intal2, inside) == 1){
@@ -351,13 +365,14 @@ char* intal_mod(const char* intal1, const char* intal2){
             }
 
             temp = intal_compare(inside, intal2);
-            if(temp == -1){
+            if(temp == -1){             
+                free(rem);
                 return  inside;
             }
             
         }  
     }
-
+    free(rem);
     return inside;
 
 }
@@ -422,6 +437,7 @@ char* intal_fibonacci(unsigned int n){
         strcpy(cur, temp);
         free(temp);
     }
+    free(prev);
     return cur;
 }
 
