@@ -1,0 +1,278 @@
+==761== Memcheck, a memory error detector
+==761== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==761== Using Valgrind-3.13.0 and LibVEX; rerun with -h for copyright info
+==761== Command: ./a.out
+==761== Parent PID: 227
+==761== 
+--761-- 
+--761-- Valgrind options:
+--761--    --leak-check=full
+--761--    --log-file=logfile1.out
+--761--    -v
+--761-- Contents of /proc/version:
+--761--   Linux version 4.4.0-18362-Microsoft (Microsoft@Microsoft.com) (gcc version 5.4.0 (GCC) ) #476-Microsoft Fri Nov 01 16:53:00 PST 2019
+--761-- 
+--761-- Arch and hwcaps: AMD64, LittleEndian, amd64-cx16-lzcnt-rdtscp-sse3-avx-avx2-bmi
+--761-- Page sizes: currently 4096, max supported 4096
+--761-- Valgrind library directory: /usr/lib/valgrind
+--761-- Reading syms from /mnt/c/Users/Adeessh Acharya/Documents/program_files/c/apss/new/Large-Integer-C-library-using-Strings/a.out
+--761-- Reading syms from /lib/x86_64-linux-gnu/ld-2.27.so
+--761--   Considering /lib/x86_64-linux-gnu/ld-2.27.so ..
+--761--   .. CRC mismatch (computed 1b7c895e wanted 2943108a)
+--761--   Considering /usr/lib/debug/lib/x86_64-linux-gnu/ld-2.27.so ..
+--761--   .. CRC is valid
+--761-- Reading syms from /usr/lib/valgrind/memcheck-amd64-linux
+--761--   Considering /usr/lib/valgrind/memcheck-amd64-linux ..
+--761--   .. CRC mismatch (computed 41ddb025 wanted 9972f546)
+--761--    object doesn't have a symbol table
+--761--    object doesn't have a dynamic symbol table
+--761-- Scheduler: using generic scheduler lock implementation.
+--761-- Reading suppressions file: /usr/lib/valgrind/default.supp
+==761== embedded gdbserver: reading from /tmp/vgdb-pipe-from-vgdb-to-761-by-roy-on-???
+==761== embedded gdbserver: writing to   /tmp/vgdb-pipe-to-vgdb-from-761-by-roy-on-???
+==761== embedded gdbserver: shared mem   /tmp/vgdb-pipe-shared-mem-vgdb-761-by-roy-on-???
+==761== 
+==761== TO CONTROL THIS PROCESS USING vgdb (which you probably
+==761== don't want to do, unless you know exactly what you're doing,
+==761== or are doing some strange experiment):
+==761==   /usr/lib/valgrind/../../bin/vgdb --pid=761 ...command...
+==761== 
+==761== TO DEBUG THIS PROCESS USING GDB: start GDB like this
+==761==   /path/to/gdb ./a.out
+==761== and then give GDB the following command
+==761==   target remote | /usr/lib/valgrind/../../bin/vgdb --pid=761
+==761== --pid is optional if only one valgrind process is running
+==761== 
+==761== error calling PR_SET_PTRACER, vgdb might block
+--761-- REDIR: 0x401f2f0 (ld-linux-x86-64.so.2:strlen) redirected to 0x580608c1 (???)
+--761-- REDIR: 0x401f0d0 (ld-linux-x86-64.so.2:index) redirected to 0x580608db (???)
+--761-- Reading syms from /usr/lib/valgrind/vgpreload_core-amd64-linux.so
+--761--   Considering /usr/lib/valgrind/vgpreload_core-amd64-linux.so ..
+--761--   .. CRC mismatch (computed 50df1b30 wanted 4800a4cf)
+--761--    object doesn't have a symbol table
+--761-- Reading syms from /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so
+--761--   Considering /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so ..
+--761--   .. CRC mismatch (computed f893b962 wanted 95ee359e)
+--761--    object doesn't have a symbol table
+==761== WARNING: new redirection conflicts with existing -- ignoring it
+--761--     old: 0x0401f2f0 (strlen              ) R-> (0000.0) 0x580608c1 ???
+--761--     new: 0x0401f2f0 (strlen              ) R-> (2007.0) 0x04c32db0 strlen
+--761-- REDIR: 0x401d360 (ld-linux-x86-64.so.2:strcmp) redirected to 0x4c33ee0 (strcmp)
+--761-- REDIR: 0x401f830 (ld-linux-x86-64.so.2:mempcpy) redirected to 0x4c374f0 (mempcpy)
+--761-- Reading syms from /lib/x86_64-linux-gnu/libc-2.27.so
+--761--   Considering /lib/x86_64-linux-gnu/libc-2.27.so ..
+--761--   .. CRC mismatch (computed b1c74187 wanted 042cc048)
+--761--   Considering /usr/lib/debug/lib/x86_64-linux-gnu/libc-2.27.so ..
+--761--   .. CRC is valid
+--761-- REDIR: 0x4edac70 (libc.so.6:memmove) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--761-- REDIR: 0x4ed9d40 (libc.so.6:strncpy) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--761-- REDIR: 0x4edaf50 (libc.so.6:strcasecmp) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--761-- REDIR: 0x4ed9790 (libc.so.6:strcat) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--761-- REDIR: 0x4ed9d70 (libc.so.6:rindex) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--761-- REDIR: 0x4edc7c0 (libc.so.6:rawmemchr) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--761-- REDIR: 0x4edade0 (libc.so.6:mempcpy) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--761-- REDIR: 0x4edac10 (libc.so.6:bcmp) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--761-- REDIR: 0x4ed9d00 (libc.so.6:strncmp) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--761-- REDIR: 0x4ed9800 (libc.so.6:strcmp) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--761-- REDIR: 0x4edad40 (libc.so.6:memset) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--761-- REDIR: 0x4ef80f0 (libc.so.6:wcschr) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--761-- REDIR: 0x4ed9ca0 (libc.so.6:strnlen) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--761-- REDIR: 0x4ed9870 (libc.so.6:strcspn) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--761-- REDIR: 0x4edafa0 (libc.so.6:strncasecmp) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--761-- REDIR: 0x4ed9840 (libc.so.6:strcpy) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--761-- REDIR: 0x4edb0e0 (libc.so.6:memcpy@@GLIBC_2.14) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--761-- REDIR: 0x4ed9da0 (libc.so.6:strpbrk) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--761-- REDIR: 0x4ed97c0 (libc.so.6:index) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--761-- REDIR: 0x4ed9c70 (libc.so.6:strlen) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--761-- REDIR: 0x4ee46c0 (libc.so.6:memrchr) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--761-- REDIR: 0x4edaff0 (libc.so.6:strcasecmp_l) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--761-- REDIR: 0x4edabe0 (libc.so.6:memchr) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--761-- REDIR: 0x4ef8eb0 (libc.so.6:wcslen) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--761-- REDIR: 0x4eda050 (libc.so.6:strspn) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--761-- REDIR: 0x4edaf20 (libc.so.6:stpncpy) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--761-- REDIR: 0x4edaef0 (libc.so.6:stpcpy) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--761-- REDIR: 0x4edc7f0 (libc.so.6:strchrnul) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--761-- REDIR: 0x4edb040 (libc.so.6:strncasecmp_l) redirected to 0x4a2a6e0 (_vgnU_ifunc_wrapper)
+--761-- REDIR: 0x4fca3c0 (libc.so.6:__strrchr_avx2) redirected to 0x4c32730 (rindex)
+--761-- REDIR: 0x4fca590 (libc.so.6:__strlen_avx2) redirected to 0x4c32cf0 (strlen)
+--761-- REDIR: 0x4ed3070 (libc.so.6:malloc) redirected to 0x4c2faa0 (malloc)
+--761-- REDIR: 0x4fb9100 (libc.so.6:__strncpy_ssse3) redirected to 0x4c32fb0 (strncpy)
+--761-- REDIR: 0x4fa5d60 (libc.so.6:__strcmp_ssse3) redirected to 0x4c33da0 (strcmp)
+==761== Conditional jump or move depends on uninitialised value(s)
+==761==    at 0x4C32D08: strlen (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==761==    by 0x10912A: intal_compare (PES1201700959.c:171)
+==761==    by 0x109BA3: intal_mod (PES1201700959.c:344)
+==761==    by 0x10A239: intal_gcd (PES1201700959.c:461)
+==761==    by 0x108884: main (test.c:14)
+==761== 
+--761-- REDIR: 0x4ed3950 (libc.so.6:free) redirected to 0x4c30cd0 (free)
+==761== Conditional jump or move depends on uninitialised value(s)
+==761==    at 0x4C32D08: strlen (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==761==    by 0x109BB4: intal_mod (PES1201700959.c:349)
+==761==    by 0x10A239: intal_gcd (PES1201700959.c:461)
+==761==    by 0x108884: main (test.c:14)
+==761== 
+==761== Conditional jump or move depends on uninitialised value(s)
+==761==    at 0x4C32FE1: strncpy (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==761==    by 0x109BCB: intal_mod (PES1201700959.c:349)
+==761==    by 0x10A239: intal_gcd (PES1201700959.c:461)
+==761==    by 0x108884: main (test.c:14)
+==761== 
+--761-- REDIR: 0x4eed9e0 (libc.so.6:__strcat_ssse3) redirected to 0x4c32990 (strcat)
+==761== Conditional jump or move depends on uninitialised value(s)
+==761==    at 0x4C329D0: strcat (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==761==    by 0x109EDE: intal_mod (PES1201700959.c:400)
+==761==    by 0x10A239: intal_gcd (PES1201700959.c:461)
+==761==    by 0x108884: main (test.c:14)
+==761== 
+==761== Conditional jump or move depends on uninitialised value(s)
+==761==    at 0x4C329D0: strcat (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==761==    by 0x109F9D: intal_mod (PES1201700959.c:407)
+==761==    by 0x10A239: intal_gcd (PES1201700959.c:461)
+==761==    by 0x108884: main (test.c:14)
+==761== 
+==761== Conditional jump or move depends on uninitialised value(s)
+==761==    at 0x4C32D08: strlen (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==761==    by 0x109FC1: intal_mod (PES1201700959.c:412)
+==761==    by 0x10A239: intal_gcd (PES1201700959.c:461)
+==761==    by 0x108884: main (test.c:14)
+==761== 
+==761== Conditional jump or move depends on uninitialised value(s)
+==761==    at 0x4C32D08: strlen (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==761==    by 0x10911B: intal_compare (PES1201700959.c:170)
+==761==    by 0x10A029: intal_mod (PES1201700959.c:413)
+==761==    by 0x10A239: intal_gcd (PES1201700959.c:461)
+==761==    by 0x108884: main (test.c:14)
+==761== 
+==761== Conditional jump or move depends on uninitialised value(s)
+==761==    at 0x4C32D08: strlen (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==761==    by 0x10911B: intal_compare (PES1201700959.c:170)
+==761==    by 0x10A044: intal_mod (PES1201700959.c:419)
+==761==    by 0x10A239: intal_gcd (PES1201700959.c:461)
+==761==    by 0x108884: main (test.c:14)
+==761== 
+==761== Conditional jump or move depends on uninitialised value(s)
+==761==    at 0x4C32D08: strlen (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==761==    by 0x10911B: intal_compare (PES1201700959.c:170)
+==761==    by 0x109BFC: intal_mod (PES1201700959.c:353)
+==761==    by 0x10A239: intal_gcd (PES1201700959.c:461)
+==761==    by 0x108884: main (test.c:14)
+==761== 
+==761== Conditional jump or move depends on uninitialised value(s)
+==761==    at 0x4C32D08: strlen (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==761==    by 0x10911B: intal_compare (PES1201700959.c:170)
+==761==    by 0x109C5B: intal_mod (PES1201700959.c:360)
+==761==    by 0x10A239: intal_gcd (PES1201700959.c:461)
+==761==    by 0x108884: main (test.c:14)
+==761== 
+==761== 
+==761== Process terminating with default action of signal 2 (SIGINT)
+==761==    at 0x109700: intal_multiply (PES1201700959.c:283)
+==761==    by 0x109C44: intal_mod (PES1201700959.c:359)
+==761==    by 0x10A239: intal_gcd (PES1201700959.c:461)
+==761==    by 0x108884: main (test.c:14)
+==761== 
+==761== HEAP SUMMARY:
+==761==     in use at exit: 431,431 bytes in 431 blocks
+==761==   total heap usage: 1,749,072 allocs, 1,748,641 frees, 1,750,815,078 bytes allocated
+==761== 
+==761== Searching for pointers to 431 not-freed blocks
+==761== Checked 165,496 bytes
+==761== 
+==761== LEAK SUMMARY:
+==761==    definitely lost: 0 bytes in 0 blocks
+==761==    indirectly lost: 0 bytes in 0 blocks
+==761==      possibly lost: 0 bytes in 0 blocks
+==761==    still reachable: 431,431 bytes in 431 blocks
+==761==         suppressed: 0 bytes in 0 blocks
+==761== Reachable blocks (those to which a pointer was found) are not shown.
+==761== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==761== 
+==761== Use --track-origins=yes to see where uninitialised values come from
+==761== ERROR SUMMARY: 390022 errors from 10 contexts (suppressed: 0 from 0)
+==761== 
+==761== 1 errors in context 1 of 10:
+==761== Conditional jump or move depends on uninitialised value(s)
+==761==    at 0x4C329D0: strcat (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==761==    by 0x109F9D: intal_mod (PES1201700959.c:407)
+==761==    by 0x10A239: intal_gcd (PES1201700959.c:461)
+==761==    by 0x108884: main (test.c:14)
+==761== 
+==761== 
+==761== 1 errors in context 2 of 10:
+==761== Conditional jump or move depends on uninitialised value(s)
+==761==    at 0x4C32FE1: strncpy (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==761==    by 0x109BCB: intal_mod (PES1201700959.c:349)
+==761==    by 0x10A239: intal_gcd (PES1201700959.c:461)
+==761==    by 0x108884: main (test.c:14)
+==761== 
+==761== 
+==761== 1 errors in context 3 of 10:
+==761== Conditional jump or move depends on uninitialised value(s)
+==761==    at 0x4C32D08: strlen (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==761==    by 0x109BB4: intal_mod (PES1201700959.c:349)
+==761==    by 0x10A239: intal_gcd (PES1201700959.c:461)
+==761==    by 0x108884: main (test.c:14)
+==761== 
+==761== 
+==761== 2 errors in context 4 of 10:
+==761== Conditional jump or move depends on uninitialised value(s)
+==761==    at 0x4C32D08: strlen (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==761==    by 0x10912A: intal_compare (PES1201700959.c:171)
+==761==    by 0x109BA3: intal_mod (PES1201700959.c:344)
+==761==    by 0x10A239: intal_gcd (PES1201700959.c:461)
+==761==    by 0x108884: main (test.c:14)
+==761== 
+==761== 
+==761== 405 errors in context 5 of 10:
+==761== Conditional jump or move depends on uninitialised value(s)
+==761==    at 0x4C32D08: strlen (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==761==    by 0x10911B: intal_compare (PES1201700959.c:170)
+==761==    by 0x109BFC: intal_mod (PES1201700959.c:353)
+==761==    by 0x10A239: intal_gcd (PES1201700959.c:461)
+==761==    by 0x108884: main (test.c:14)
+==761== 
+==761== 
+==761== 405 errors in context 6 of 10:
+==761== Conditional jump or move depends on uninitialised value(s)
+==761==    at 0x4C32D08: strlen (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==761==    by 0x10911B: intal_compare (PES1201700959.c:170)
+==761==    by 0x10A044: intal_mod (PES1201700959.c:419)
+==761==    by 0x10A239: intal_gcd (PES1201700959.c:461)
+==761==    by 0x108884: main (test.c:14)
+==761== 
+==761== 
+==761== 405 errors in context 7 of 10:
+==761== Conditional jump or move depends on uninitialised value(s)
+==761==    at 0x4C32D08: strlen (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==761==    by 0x10911B: intal_compare (PES1201700959.c:170)
+==761==    by 0x10A029: intal_mod (PES1201700959.c:413)
+==761==    by 0x10A239: intal_gcd (PES1201700959.c:461)
+==761==    by 0x108884: main (test.c:14)
+==761== 
+==761== 
+==761== 405 errors in context 8 of 10:
+==761== Conditional jump or move depends on uninitialised value(s)
+==761==    at 0x4C32D08: strlen (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==761==    by 0x109FC1: intal_mod (PES1201700959.c:412)
+==761==    by 0x10A239: intal_gcd (PES1201700959.c:461)
+==761==    by 0x108884: main (test.c:14)
+==761== 
+==761== 
+==761== 407 errors in context 9 of 10:
+==761== Conditional jump or move depends on uninitialised value(s)
+==761==    at 0x4C329D0: strcat (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==761==    by 0x109EDE: intal_mod (PES1201700959.c:400)
+==761==    by 0x10A239: intal_gcd (PES1201700959.c:461)
+==761==    by 0x108884: main (test.c:14)
+==761== 
+==761== 
+==761== 387990 errors in context 10 of 10:
+==761== Conditional jump or move depends on uninitialised value(s)
+==761==    at 0x4C32D08: strlen (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==761==    by 0x10911B: intal_compare (PES1201700959.c:170)
+==761==    by 0x109C5B: intal_mod (PES1201700959.c:360)
+==761==    by 0x10A239: intal_gcd (PES1201700959.c:461)
+==761==    by 0x108884: main (test.c:14)
+==761== 
+==761== ERROR SUMMARY: 390022 errors from 10 contexts (suppressed: 0 from 0)

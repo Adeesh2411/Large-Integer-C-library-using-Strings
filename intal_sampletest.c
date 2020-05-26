@@ -246,6 +246,9 @@ int main(int argc, char const *argv[]) {
 	}
 
 	intal_sort(a, 10);
+	// for(int i=0;i<=10;++i){
+	// 	printf("%s\n",a[i]);
+	// }
 	index1 = intal_binsearch(a, 10, "3");
 	if(1 == index1) {
 		printf("Test intal_binsearch and probably intal_sort PASSED\n");

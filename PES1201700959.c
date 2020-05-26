@@ -32,12 +32,13 @@ static void reverse(char *result){
 
 //to get the substring from thw given string in the given range
 static char* subString(const char *str, int first, int last){
-    char* temp = (char*)malloc(sizeof(char)*(last-first+2));
+    char* temp = (char*)malloc(sizeof(char)*(1001));
     int k=0;
     for(int i=first; i<=last; ++i){
         temp[k++] = str[i];
     }
-    temp[k] = '\0';
+    if(k<1000)
+        temp[k] = '\0';
     return temp; 
 }
 
@@ -45,7 +46,7 @@ static char* subString(const char *str, int first, int last){
 //runs in constant time
 static char* powFunc(const char *arr, int n){
     if(n == 1){
-        char *temp = (char*)malloc(sizeof(char)*strlen(arr)+2);
+        char *temp = (char*)malloc(sizeof(char)*1001);
         strcpy(temp, arr);
         return temp;
     }
@@ -97,13 +98,13 @@ static int partition(char **arr, int start, int end){
         else{
             //swap
             if(i!=j){
-                char* temp = (char*)malloc(sizeof(char)*strlen(arr[i])+2);
+                char* temp = (char*)malloc(sizeof(char)*1001);
                 strcpy(temp, arr[i]);
                 free(arr[i]);
-                arr[i] = (char*)malloc(sizeof(char)*strlen(arr[j])+2);
+                arr[i] = (char*)malloc(sizeof(char)*1001);
                 strcpy(arr[i], arr[j]);
                 free(arr[j]);
-                arr[j] = (char*)malloc(sizeof(char)*strlen(temp)+2);
+                arr[j] = (char*)malloc(sizeof(char)*1001);
                 strcpy(arr[j], temp);
                 free(temp);
             }
@@ -112,13 +113,13 @@ static int partition(char **arr, int start, int end){
         }
     }
     if(p!=i-1){
-        char* temp = (char*)malloc(sizeof(char)*strlen(arr[p])+2);
+        char* temp = (char*)malloc(sizeof(char)*1001);
         strcpy(temp, arr[p]);
         free(arr[p]);
-        arr[p] = (char*)malloc(sizeof(char)*strlen(arr[i-1])+2);
+        arr[p] = (char*)malloc(sizeof(char)*1001);
         strcpy(arr[p], arr[i-1]);
         free(arr[i-1]);
-        arr[i-1] = (char*)malloc(sizeof(char)*strlen(temp)+2);
+        arr[i-1] = (char*)malloc(sizeof(char)*1001);
         strcpy(arr[i-1], temp);
         free(temp);
     }
@@ -139,7 +140,7 @@ main function
 char* intal_add(const char* intal1, const char* intal2){
     int len1 = strlen(intal1)-1;
     int len2 = strlen(intal2)-1;
-    char *result = (char*)malloc(sizeof(char)*(max(len1+1, len2+1)+2));
+    char *result = (char*)malloc(sizeof(char)*(1001));
     int indexResult=0;
     int carry = 0;
     int one, two, res;
@@ -208,16 +209,16 @@ char* intal_diff(const char* intal1, const char* intal2){
     int val = intal_compare(intal1, intal2);
 
     if(val == -1){
-        first = (char*)malloc(sizeof(char)*(len22+2 ));
-        second = (char*)malloc(sizeof(char)*(len11+2 ));
+        first = (char*)malloc(sizeof(char)*(1001 ));
+        second = (char*)malloc(sizeof(char)*(1001 ));
         strcpy(first, intal2);
         strcpy(second, intal1);
         first[len22] = '\0';
         second[len11] = '\0';
     }
     else if(val == 1){
-        first = (char*)malloc(sizeof(char)*(len11+2 ));
-        second = (char*)malloc(sizeof(char)*(len22 +2));
+        first = (char*)malloc(sizeof(char)*(1001 ));
+        second = (char*)malloc(sizeof(char)*(1001));
         strcpy(first, intal1);
         strcpy(second, intal2);
         first[len11] = '\0';
@@ -234,7 +235,7 @@ char* intal_diff(const char* intal1, const char* intal2){
     int len1 = strlen(first)-1;
     int len2 = strlen(second)-1;
     int res;
-    char *result = (char*)malloc(sizeof(char)*len1+2);
+    char *result = (char*)malloc(sizeof(char)*1001);
     int index = 0;
     while(len1>=0){
         res = 0;
@@ -274,7 +275,7 @@ char* intal_multiply(const char* intal1, const char* intal2){
     char *arr[len1+1];
     
     for(int i=len1-1;i>=0; --i){
-        arr[len1-1-i] = (char*)malloc(sizeof(char)*(len2+1+(len1-1-i)+2));
+        arr[len1-1-i] = (char*)malloc(sizeof(char)*(1001));
         int curIndex=0;
         carry = 0;
         curNo = intal1[i] - '0';
@@ -294,34 +295,56 @@ char* intal_multiply(const char* intal1, const char* intal2){
         arr[len1-i-1][curIndex] = '\0';
     }
     reverse(arr[0]);
-    char *prev = (char*)malloc(sizeof(char)*strlen(arr[0])+2);
+    char *prev = (char*)malloc(sizeof(char)*1001);
     strcpy(prev, arr[0]);
     free(arr[0]);
     
     for(int i=1;i<len1; ++i){
         reverse(arr[i]);
-        char *cur = (char*)malloc(sizeof(char)*strlen(arr[i])+2);
+        char *cur = (char*)malloc(sizeof(char)*1001);
         strcpy(cur, arr[i]);
         free(arr[i]);
 
         char *temp1 = intal_add(prev, cur);
         free(prev);
-        prev = (char*)malloc(sizeof(char)*strlen(temp1)+2);
+        prev = (char*)malloc(sizeof(char)*1001);
         strcpy(prev, temp1);
 
         free(cur);
         free(temp1);
     }
-    return prev;
+    int st = 0;
+    for(int i=0;i<strlen(prev);i++){
+        if(prev[i] == '0')
+            ++st;
+        else
+            break;
+    }
+    //printf("%s",prev);
+    if(st == strlen(prev)){
+        char *temp = (char*)malloc(sizeof(char)*2);
+        temp[0]='0';
+        temp[1] = '\0';
+        return temp;
+    }
+    char *finalresult = subString(prev, st, strlen(prev));
+    free(prev);
+    return finalresult;
 }
 
 char* intal_mod(const char* intal1, const char* intal2){
     int len1 = strlen(intal1);
     int len2 = strlen(intal2);
 
-    char* rem = (char*)malloc(sizeof(char)*len2 - 1);
+    if(intal_compare(intal1, intal2) == -1){
+        char* temp = (char*)malloc(sizeof(char)*1001);
+        strcpy(temp, intal1);
+        return temp;
+    }
+
+    char* rem = (char*)malloc(sizeof(char)*1001);
     char* temp = subString(intal1, 0, len2-1);
-    char* inside = (char*)malloc((sizeof(char)*strlen(temp))+2);
+    char* inside = (char*)malloc((sizeof(char)*1001));
     int index = len2-1;
     
     while(intal_compare(intal2, temp) == 1){
@@ -345,7 +368,7 @@ char* intal_mod(const char* intal1, const char* intal2){
         }
         if(res == 0){
             free(inside);
-            inside = (char*)malloc((sizeof(char)*len2)+2);
+            inside = (char*)malloc((sizeof(char)*1001));
             if(index == len1-1){
                 char *a=(char*)malloc(sizeof(char)*2);
                 a[0] = '0';
@@ -374,7 +397,7 @@ char* intal_mod(const char* intal1, const char* intal2){
 
             free(temp1);
             free(inside);
-            inside = (char*)malloc(sizeof(char)*len1);
+            inside = (char*)malloc(sizeof(char)*1001);
             strcpy(inside, diff);
 
             int n = strlen(inside);
@@ -425,7 +448,7 @@ char* intal_pow(const char* intal1, unsigned int n){
         return temp;
     }
     char *temp = powFunc(intal1, n);
-    char *temp1 = (char*)malloc(sizeof(char)*strlen(temp)+2);
+    char *temp1 = (char*)malloc(sizeof(char)*1001);
     strcpy(temp1, temp);
     free(temp);
     return temp1;
@@ -434,8 +457,8 @@ char* intal_pow(const char* intal1, unsigned int n){
 char* intal_gcd(const char* intal1, const char* intal2){
     int len1 = strlen(intal1);
     int len2 = strlen(intal2);
-    char* copy1 = (char*)malloc(sizeof(char)*len1+2);
-    char* copy2 = (char*)malloc(sizeof(char)*len2+2);
+    char* copy1 = (char*)malloc(sizeof(char)*(1001));
+    char* copy2 = (char*)malloc(sizeof(char)*1001);
     strcpy(copy1, intal1);
     strcpy(copy2, intal2);
     int res = strcmp(copy2, "0");
@@ -443,10 +466,10 @@ char* intal_gcd(const char* intal1, const char* intal2){
     while(res!=0){
         char *mod = intal_mod(copy1 , copy2);
         free(copy1);
-        copy1 = (char*)malloc(sizeof(char)*strlen(copy2)+2);
+        copy1 = (char*)malloc(sizeof(char)*1001);
         strcpy(copy1, copy2);
         free(copy2);
-        copy2 = (char*)malloc(sizeof(char)*strlen(mod)+2);
+        copy2 = (char*)malloc(sizeof(char)*1001);
         strcpy(copy2, mod);
         free(mod);
         res = strcmp(copy2, "0");
@@ -463,13 +486,18 @@ char* intal_fibonacci(unsigned int n){
     char* cur = (char*)malloc(sizeof(char)*2);
     cur[0]='1';
     cur[1]='\0';
+
+    if(n == 0){
+        free(cur);
+        return prev;
+    }
     for(int i=2;i<=n;++i){
         char* temp = intal_add(prev, cur);
         free(prev);
-        prev = (char*)malloc(sizeof(char)*(strlen(cur)+2));
+        prev = (char*)malloc(sizeof(char)*(1001));
         strcpy(prev, cur);
         free(cur);
-        cur = (char*)malloc(sizeof(char)*(strlen(temp)+2));
+        cur = (char*)malloc(sizeof(char)*(1001));
         strcpy(cur, temp);
         free(temp);
     }
@@ -489,7 +517,7 @@ char* intal_factorial(unsigned int n){
             index++;
             k /= 10;
         }
-        char* temp = (char*)malloc(sizeof(char)*index+2);
+        char* temp = (char*)malloc(sizeof(char)*1001);
         k=i;
         temp[index] = '\0';
         while(k){
@@ -500,7 +528,7 @@ char* intal_factorial(unsigned int n){
         char *result = intal_multiply(cur, temp);
         free(cur);
         free(temp);
-        cur = (char*)malloc(sizeof(char)*strlen(result)+2);
+        cur = (char*)malloc(sizeof(char)*1001);
         strcpy(cur, result);
         cur[strlen(cur)] = '\0';
         free(result);
@@ -509,7 +537,7 @@ char* intal_factorial(unsigned int n){
 }
 
 char* intal_bincoeff(unsigned int n, unsigned int k){
-    char **dp = (char**)malloc(sizeof(char*)*(k+2));
+    char **dp = (char**)malloc(sizeof(char*)*(1001));
     for(int i=0;i<=k;++i){
         dp[i] = (char*)malloc(sizeof(char)*2);
         if(i==0)
@@ -523,29 +551,29 @@ char* intal_bincoeff(unsigned int n, unsigned int k){
     
     for(int i=1;i<=n;++i){
         
-        cur = (char*)malloc(sizeof(char)*strlen(dp[0])+2);
+        cur = (char*)malloc(sizeof(char)*1001);
         strcpy(cur, dp[0]);
 
         for(int j=1;j<=i && j<=k;++j){
         
-            prev = (char*)malloc(sizeof(char)*strlen(cur)+2);
+            prev = (char*)malloc(sizeof(char)*1001);
             strcpy(prev, cur);
             free(cur);
-            cur = (char*)malloc(sizeof(char)*strlen(dp[j])+2);
+            cur = (char*)malloc(sizeof(char)*1001);
             strcpy(cur, dp[j]);
 
             char* temp = intal_add(prev, cur);
             
             free(dp[j]);
             
-            dp[j] = (char*)malloc(sizeof(char)*(strlen(temp)+ 2));
+            dp[j] = (char*)malloc(sizeof(char)*(1001));
             strcpy(dp[j], temp);
             free(temp);
             free(prev);
             if(i%2==0 && j+1 == (i/2)){
                 char* addMiddle = intal_add(cur, cur);
                 free(dp[j+1]);
-                dp[j+1] = (char*)malloc(sizeof(char)*strlen(addMiddle)+2); 
+                dp[j+1] = (char*)malloc(sizeof(char)*1001); 
                 strcpy(dp[j+1], addMiddle);
                 free(addMiddle);
                 break;
@@ -567,7 +595,7 @@ char* intal_bincoeff(unsigned int n, unsigned int k){
         int t= k-(n+1)/2 ;
         mid-=t+1;
     }
-    char *result = (char*)malloc(sizeof(char)*strlen(dp[mid-1])+2);
+    char *result = (char*)malloc(sizeof(char)*1001);
     
     strcpy(result, dp[mid-1]);
     for(int i=0;i<=k;++i){
@@ -609,7 +637,16 @@ int intal_search(char **arr, int n, const char* key){
 }
 
 int intal_binsearch(char **arr, int n, const char* key){
-    return binSearch(arr, 0, n-1,key);
+    int temp = binSearch(arr, 0, n-1,key);
+    while(temp>0){
+        if(!strcmp(key, arr[temp-1])){
+            temp--;
+        }
+        else{
+            break;
+        }
+    }
+    return temp;
 }
 
 void intal_sort(char **arr, int n){
@@ -621,25 +658,25 @@ char* coin_row_problem(char **arr, int n){
     prev[0]='0';
     prev[1]='\0';
 
-    char *cur = (char*)malloc(sizeof(strlen(arr[0]))+2);
+    char *cur = (char*)malloc(sizeof(char)*1001);
     strcpy(cur, arr[0]);
 
     for(int i = 1; i<n; ++i){
         char *temp1 = intal_add(prev, arr[i]);
         int res = intal_compare(temp1, cur);
         if(res == 1){
-            //temp = prev; prev = cur; cur = prev
+            //temp = prev; prev = cur; cur = temp+arr[i]
             free(prev);
-            prev = (char*)malloc(sizeof(char)*strlen(cur)+2);
+            prev = (char*)malloc(sizeof(char)*1001);
             strcpy(prev, cur);
 
             free(cur);
-            cur = (char*)malloc(sizeof(char)*strlen(temp1)+2);
+            cur = (char*)malloc(sizeof(char)*1001);
             strcpy(cur, temp1);
         }
         else{//prev = cur
             free(prev);
-            prev = (char*)malloc(sizeof(char)*strlen(cur)+2);
+            prev = (char*)malloc(sizeof(char)*1001);
             strcpy(prev, cur);
         }
         free(temp1);

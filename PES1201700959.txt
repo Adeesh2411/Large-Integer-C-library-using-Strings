@@ -1,0 +1,145 @@
+Name :  Adeesh
+SRN : PES1201700959
+Extra function used here are :
+1. static int max(int one, int two); 
+    This function returns max of two numbers
+
+2. static int min(int one, int two);
+    This function returns min of two numbers
+
+3. static void swap(char *a, char *b);
+    This function swaps the two characters
+
+4. static void reverse(char *result);
+    This function reverses the given string
+
+5. static char* subString(const char *str, int first, int last);
+    This function used get substring from the given string str in the range specified
+
+6. static char* powFunc(const char *arr, int n);
+    This is the recursive function which calculates pow in O(log n)
+
+7. static int binSearch(char** arr, int start, int end, const char* key);
+    This function performs binarySearch on the arr searching the key
+
+8. static int partition(char **arr, int start, int end);
+    This is partition function which will be used in the quick sort
+
+9. static void quickSort(char** arr, int start, int end);
+    This is main body of quick sort function
+
+10. static void reverse(char *result);
+    This function reverses the given string
+
+Implementation of the specified function
+1. intal_add();
+    here we iterate each character by character adding the two no in integer format and also taking care of carry and storing in temporary array. 
+    after iterating all te character we will reverse the result to return in correct format
+    Time complexity is O(n1+n2)
+    Space Complexity is O(n1+n2)
+    here n1 and n2 are length of two given string respectively
+
+2. intal_diff();
+    Here similar to add we iterate char by char and substract the each and return the final value
+    Time complexity is O(n1+n2)
+    Space Complexity(n1+n2)
+
+3. intal_compare();
+    Here we compare each of given two string by char from unit place to highest degree phase and
+    return 1 is 1st string is greater, -1 if 2nd is greater and 0 if both are same
+    Time Complexity = O(n1+n2)
+    Space Complexity = O(1)
+
+4. intal_multiply()
+    Here we implemented this by using grade school multiplication algorithm
+    Time Complexity = O(n1*n2)
+    space Complexity = O(n1+n2)
+
+5. intal_mod();
+    This function is implemented by dividing the two given strings and return the reminder as a result
+    Time Complexity = O(n1)
+    Space Complexity = O(n1)
+
+6. intal_pow();
+    This function is implemented using recursive approach .Idea behind this Implementation is
+              |if b is even then return [(a pow b/2) * (a pow b/2)]
+    a pow b = |
+              |if b is odd then return [(a pow b/2) * (a pow b/2) * (a)]
+    
+    Time Complexity = O(log a)
+    Space Complexity = O(n1)
+    a is the value given
+
+7. intal_gcd()
+    This is implemented using Euclid's algorithm
+    
+    while a!=b:
+        temp = a%b
+        a = b
+        b = temp
+    
+    Time Complexity = O(log a + log b)
+    Space Complexity O(n1+n2)
+
+8. intal_fibonacci()
+    This is implemented using recursive formula i.e. A[i] = A[i-1] + A[i-2]
+    Time Complexity = O(n)
+    Space Complexity = O(1)
+
+9. intal_factorial()
+    This is implemented by multiplying all the from [1, n]
+    Time Complexity = O(n)
+    Space Complexity = O(n1 + n2)
+
+10. intal_bincoeff()
+    This is implemented using pascal idea ,but instead of generating full triangle we will generate only half of them
+    because C(n,r) = C(n, n-r) 
+    Time Complexity = O(n1/2 * n2/2) = O(n1*n2)
+    Space Complexity = O(n1+n2)
+
+11. intal_max();
+    Given array which will return max element in the array by comparing each element
+    Time Complexity = O(n)
+    Space Complexity = O(1)
+    here n is the number of elements in the given array
+
+12. intal_min();
+    Given array which will return min element in the array by comparing each element
+    Time Complexity = O(n)
+    Space Complexity = O(1)
+    here n is the number of elements in the given array 
+
+13. intal_search()
+    This function takes array and key to search in the array as parameter
+    this iterates each element by comparing then returns the first occurred index of element
+    This Complexity = O(n)
+    Space Complexity = O(1)
+
+14. intal_binsearch()
+    This function performs binary search on the array 
+    Time Complexity = O(log n)
+    Space Complexity = O(1)
+
+15. intal_sort()
+    This function sorts the array .Algorithm used here is quickSort
+    Time Complexity = O(n log n)
+    Space Complexity = O(1)
+
+16. coin_row_problem()
+    This problem is implemented by following algorithm
+    
+    A = input array
+    prev = 0
+    cur = A[0]
+    for i = 1 to n-1:
+        if prev+A[i] > cur:
+            temp = cur
+            cur = prev + A[i]
+            prev = temp
+        else:
+            prev =cur
+
+    return cur
+
+    Time Complexity = O(n)
+    Space Complexity = O(1)
